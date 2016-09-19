@@ -10,6 +10,9 @@ import {OrderService} from './app.order.service';
   providers:[OrderService]
 })
 export class OrderComponent{
+constructor(orderService : OrderService){
+
+}
 
 
 }
