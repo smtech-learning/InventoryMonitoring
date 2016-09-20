@@ -10,20 +10,18 @@ import {OrderComponent} from './app.ordercomponent';
 import {InventoryComponent} from './app.inventorycomponent';
 import {SuppliersComponent} from './app.supplierscomponent';
 import {RatingsComponent} from './app.ratingscomponent';
-// import {GeoAddressService} from './app.geoaddress.service';
 import {GeoAddressComponent} from './app.geoaddress.component';
 import {PageNotFoundComponent} from './app.pagenotfoundcomponent'
 
 @NgModule({
   declarations: [
+    GeoAddressComponent,
     AppComponent,
     OrderComponent,
     InventoryComponent,
     SuppliersComponent,
     RatingsComponent,
-    PageNotFoundComponent,
-    // GeoAddressService,
-    GeoAddressComponent
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
