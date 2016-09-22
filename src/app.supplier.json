@@ -1,0 +1,12 @@
+{
+  "suppliers": [
+    { "name": "John Conner" },
+    { "name": "Mike Grandler" },
+    { "name": "John Sedor" },
+    { "name": "Ernie Santralio" },
+    { "name": "Kate Rodreuiz" },
+    { "name": "Vishnu Priya" },
+    { "name": "Agastya Munnangi" },
+    { "name": "Arnold Schwarzenegger" }
+  ]
+}
