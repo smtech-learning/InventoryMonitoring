@@ -5,15 +5,13 @@ import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/map';
 import {FilterPipe} from './app.supplier.pipe.ts'
 
-@Component({
-selector: 'app-supplier',
-template:`
+var template = `
 <input type="text" (input)="search($event.target.value)">
 <input type="text" [(ngModel)]="term" value="s">
 
 <ul>
-      <li *ngFor="let supplier of suppliers | async|filter:term">
-        {{supplier.name}}  - {{supplier.email}} - {{supplier.phone}} - {{supplier.address}} 
+      <li *ngFor="let supplier of suppliers | async|filter:term let i=index">
+        {{i+1}} - {{supplier.name}}  - {{supplier.email}} - {{supplier.phone}} - {{supplier.address}} 
     </li>
 
     </ul> 
@@ -24,7 +22,11 @@ template:`
     </ul>
     
 
-`,
+`;
+
+@Component({
+selector: 'app-supplier',
+template:template,
 pipes:[FilterPipe]
 })
 export class SuppliersComponent{

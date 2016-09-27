@@ -7,9 +7,9 @@ name:'filter'
 
 export class FilterPipe implements PipeTransform{
 
-transform(suppliers:any,searchTerm:any):any{
-if (suppliers===undefined) return suppliers;
-return suppliers.filter(
+transform(supplierNames:any,searchTerm:any):any{
+if (searchTerm===undefined) return supplierNames;
+return supplierNames.filter(
     function(currentItem){
         return currentItem.name.toLowerCase().includes(searchTerm.toLowerCase())
     }
