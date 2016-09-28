@@ -16,8 +16,9 @@ var template = `
   <div class="container">
   <h2>Supplier Information</h2>
   <p>This report displays all the supplier information</p>
-  <input type="text" [(ngModel)]="term" class="form-control" placeholder="Search">
-  
+    <div class="form-group">
+      <input type="text" [(ngModel)]="term" class="form-control" placeholder="Search">
+  </div>
   <table class="table">
     <thead>
       <tr>
@@ -29,7 +30,7 @@ var template = `
       </tr>
     </thead>
     <tbody>
-     
+     <i  *ngIf=[isLoading ] class="fa fa-spinner fa-spin fa-3x"> </i>
       <tr *ngFor="let supplier of suppliers | async|filter:term let i=index">
       <td>{{i+1}}</td>
         <td>{{supplier.name}}</td>
@@ -54,14 +55,15 @@ export class SuppliersComponent{
 suppliers: Observable<Array<any>>;
 address: Observable<Array<any>>;
 urladdress:string;
+isLoading:boolean=true;
 
   constructor (private _http: Http) {
     //this.suppliers = this._http.get('https://jsonplaceholder.typicode.com/users/')
       //.map(response => response.json());
-
+      this.isLoading=true;
       this.suppliers = this._http.get('/suppliers.json')
       .map(response => response.json());
-      
+      this.isLoading=false;
   }
 
 search(searchtext){
@@ -78,9 +80,7 @@ console.log(this.urladdress);
                             //Displays in case if it hets HTTP error
                             (err)=>{this.address=err}  
                         )
-
-                   
-                        
+                       
 }
 
 }
