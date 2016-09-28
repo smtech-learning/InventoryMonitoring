@@ -7,20 +7,40 @@ import {FilterPipe} from './app.supplier.pipe.ts'
 
 var template = `
 <input type="text" (input)="search($event.target.value)">
-<input type="text" [(ngModel)]="term" value="s">
 
-<ul>
-      <li *ngFor="let supplier of suppliers | async|filter:term let i=index">
-        {{i+1}} - {{supplier.name}}  - {{supplier.email}} - {{supplier.phone}} - {{supplier.address}} 
-    </li>
-
-    </ul> 
-
-    <ul>
-      <li> {{address}} </li>
+{{address}}
       
-    </ul>
-    
+
+
+
+  <div class="container">
+  <h2>Supplier Information</h2>
+  <p>This report displays all the supplier information</p>
+  <input type="text" [(ngModel)]="term" class="form-control" placeholder="Search">
+  
+  <table class="table">
+    <thead>
+      <tr>
+      <th>Record #</th>
+        <th>Name</th>
+        <th>eMail</th>
+        <th>Phone</th>
+        <th>Address</th>
+      </tr>
+    </thead>
+    <tbody>
+     
+      <tr *ngFor="let supplier of suppliers | async|filter:term let i=index">
+      <td>{{i+1}}</td>
+        <td>{{supplier.name}}</td>
+        <td>{{supplier.email}}</td>
+        <td>{{supplier.phone}}</td>
+        <td>{{supplier.address}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+  
 
 `;
 
