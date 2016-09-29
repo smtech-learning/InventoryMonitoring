@@ -30,8 +30,8 @@ var template = `
       </tr>
     </thead>
     <tbody>
-     <i  *ngIf=[isLoading ] class="fa fa-spinner fa-spin fa-3x"> </i>
-      <tr *ngFor="let supplier of suppliers | async|filter:term let i=index">
+     <i  [style.visibility]="isLoading ? 'visible' :'hidden'" class="fa fa-spinner fa-spin fa-1x"></i>
+      <tr *ngFor="let supplier of suppliers | filter:term let i=index">
       <td>{{i+1}}</td>
         <td>{{supplier.name}}</td>
         <td>{{supplier.email}}</td>
@@ -40,7 +40,7 @@ var template = `
       </tr>
     </tbody>
   </table>
-</div>
+</div> 
   
 
 `;
@@ -53,17 +53,26 @@ pipes:[FilterPipe]
 export class SuppliersComponent{
 
 suppliers: Observable<Array<any>>;
+//suppliers: any;
+
 address: Observable<Array<any>>;
 urladdress:string;
-isLoading:boolean=true;
+isLoading:boolean=false;
+error:string='';
 
   constructor (private _http: Http) {
     //this.suppliers = this._http.get('https://jsonplaceholder.typicode.com/users/')
       //.map(response => response.json());
       this.isLoading=true;
-      this.suppliers = this._http.get('/suppliers.json')
-      .map(response => response.json());
-      this.isLoading=false;
+      this._http.get('/suppliers.json')
+      .map(response => response.json())
+      .subscribe(
+        result=>this.suppliers=result,
+        err=>this.error=err,
+          ()=>this.isLoading=false 
+      
+      );
+      
   }
 
 search(searchtext){
